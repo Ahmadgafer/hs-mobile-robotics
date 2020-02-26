@@ -57,6 +57,7 @@ add_message_files(
   FILES
   KeyFrame.msg
   Factor.msg
+  Graph.msg
 )
 
 # Generate services in the 'srv' folder
