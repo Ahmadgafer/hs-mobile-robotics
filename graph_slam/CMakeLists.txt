@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   sensor_msgs
+  laser_geometry
   message_generation
 )
 
@@ -63,6 +64,7 @@ add_message_files(
 # Generate services in the 'srv' folder
 add_service_files(
   FILES
+  AddNewOdometryFactor.srv
   AddNewFactor.srv
   AddNewKF.srv
   GetLastKF.srv
@@ -146,6 +148,7 @@ include_directories(${GTSAM_INCLUDE_DIR})
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(graph_manager_node src/graph_manager/graph_manager_node.cpp src/graph_manager/graph_manager.cpp)
 add_executable(scan_matcher_node src/scan_matcher/scan_matcher_node.cpp src/scan_matcher/scan_matcher.cpp)
+add_executable(odometry_manager_node src/odometry_manager/odometry_manager_node.cpp src/odometry_manager/odometry_manager.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -157,6 +160,7 @@ add_executable(scan_matcher_node src/scan_matcher/scan_matcher_node.cpp src/scan
 # same as for the library above
 add_dependencies(graph_manager_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(scan_matcher_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(odometry_manager_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 # Specify libraries to link a library or executable target against
 target_link_libraries(graph_manager_node
@@ -164,6 +168,9 @@ target_link_libraries(graph_manager_node
   ${catkin_LIBRARIES}
 )
 target_link_libraries(scan_matcher_node
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(odometry_manager_node
   ${catkin_LIBRARIES}
 )
 

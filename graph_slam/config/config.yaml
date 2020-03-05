@@ -1,0 +1,30 @@
+laser_odometry:
+  durationToAddNewKF: 2
+  fitness_threshould: 0.00001
+  covariance:
+    segma_x: 0.1
+    segma_y: 0.1
+    segma_theta: 0.15
+
+laser_loop_closure:
+  loop_close_count: 5
+  skipLastKF: 5
+  fitness_threshould_loopclosure: 3
+  covariance:
+    segma_x: 0.15
+    segma_y: 0.15
+    segma_theta: 0.2
+  
+wheel_odometry:
+  covariance:
+    segma_x: 10
+    segma_y: 10
+    segma_theta: 10
+
+
+  #covariance:
+   # segma_x: 0.02
+    #segma_y: 0.02
+    #segma_theta: 0.05
+ 
+
