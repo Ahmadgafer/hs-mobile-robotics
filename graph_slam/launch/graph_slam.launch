@@ -1,0 +1,13 @@
+
+
+<launch>
+  <env name="TURTLEBOT3_MODEL" value="burger"/>
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch"/>
+  <?ignore
+  <node name="scan_matcher_node" pkg="graph_slam" type="scan_matcher_node" output="screen"/>
+  <node name="visualiser_node" pkg="graph_slam" type="visualiser_node" output="screen" />
+
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find turtlebot3_description)/rviz/model.rviz" />
+  <node pkg="rosbag" type="play" name="turtlebot_recording1" output="screen" args="--clock /home/danne/ros/turtlebot3/src/hs-mobile-robotics/turtlebot_recording1.bag"/>
+  ?>
+</launch>

@@ -1,0 +1,7 @@
+
+
+<launch>
+  <node name="scan_matcher_node" pkg="graph_slam" type="scan_matcher_node" output="screen"/>
+  <node name="graph_manager_node" pkg="graph_slam" type="graph_manager_node" output="screen" />
+  <node name="visualiser_node" pkg="graph_slam" type="visualiser_node" output="screen" />
+</launch>
