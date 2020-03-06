@@ -9,6 +9,9 @@ add_compile_options(-std=c++11)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   pcl_ros
+  tf2_ros
+  tf2_eigen
+  laser_geometry
   roscpp
   rospy
   std_msgs
@@ -144,8 +147,10 @@ include_directories(${GTSAM_INCLUDE_DIR})
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(graph_manager_node src/graph_manager/graph_manager_node.cpp src/graph_manager/graph_manager.cpp)
-add_executable(scan_matcher_node src/scan_matcher/scan_matcher_node.cpp src/scan_matcher/scan_matcher.cpp)
+add_executable(graph_manager_node src/graph_manager/graph_manager_node.cpp)
+add_executable(scan_matcher_node src/scan_matcher/scan_matcher_node.cpp)
+add_executable(visualizer_node src/visualizer/visualizer_node.cpp)
+add_executable(map_maker_node src/map_maker/map_maker_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -157,6 +162,8 @@ add_executable(scan_matcher_node src/scan_matcher/scan_matcher_node.cpp src/scan
 # same as for the library above
 add_dependencies(graph_manager_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(scan_matcher_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(visualizer_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(map_maker_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 # Specify libraries to link a library or executable target against
 target_link_libraries(graph_manager_node
@@ -164,6 +171,14 @@ target_link_libraries(graph_manager_node
   ${catkin_LIBRARIES}
 )
 target_link_libraries(scan_matcher_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(visualizer_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(map_maker_node
   ${catkin_LIBRARIES}
 )
 

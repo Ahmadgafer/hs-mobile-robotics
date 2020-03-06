@@ -1,0 +1,18 @@
+wheel_odometry_noise:
+  - 0.02
+  - 0.02
+  - 0.0785
+odometry_noise:
+  - 0.03
+  - 0.03
+  - 0.0785
+loop_closure_noise:
+  - 0.08
+  - 0.08
+  - 0.2
+number_of_keyframes_to_ignore_for_finding_nearest: 7
+similarity_threshold_new_kf: 0.15
+similarity_threshold_loop_closure: 1.0
+new_kf_time: 1.0
+kf_len_threshold: 1.0
+kf_angle_threshold: 0.785 

@@ -1,0 +1,14 @@
+<launch>
+  <rosparam command="load" file="$(find graph_slam)/config/graph_slam_params.yaml" />
+  <!-- <rosparam command="load" file="$(find graph_slam)/config/graph_slam_params_small.yaml" /> -->
+  <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch" />
+  <node name="graph_manager" pkg="graph_slam" type="graph_manager_node" output="screen"/>
+  <node name="scan_matcher" pkg="graph_slam" type="scan_matcher_node" output="screen">
+    <remap from="scan" to="base_scan"/>
+  </node>
+  <node name="visualizer" pkg="graph_slam" type="visualizer_node" output="screen"/>
+  <!-- <node name="map_maker" pkg="graph_slam" type="map_maker_node" output="screen"/> -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtlebot3_description)/rviz/model.rviz"/>
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="map2odom" args="0.067 0.063 0 0 0 0.449626 0.893217 map odom" /> -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="map2odom" args="0 0 0 0 0 0 map odom" />
+</launch>
